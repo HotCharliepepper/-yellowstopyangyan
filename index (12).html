@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>양양 옐로우스탑 펜션 검색·예약채널 진단 체크리스트</title>
+  <meta name="description" content="손님이 예약 전 어디서 보고, 무엇을 확인하고, 어디서 망설이는지 — 옐로우스탑이 네이버·구글·예약채널·AI 검색에서 어떻게 보이는지 함께 짚어보는 간단한 체크입니다." />
+
+  <!-- ===== 공유 썸네일(카카오톡·구글·SNS) ===== -->
+  <link rel="canonical" href="https://yellowstopyangyang.netlify.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Weplace · 예약 전 신뢰 정비" />
+  <meta property="og:url" content="https://yellowstopyangyang.netlify.app/" />
+  <meta property="og:title" content="양양 옐로우스탑 펜션 · 검색·예약채널 진단 체크리스트" />
+  <meta property="og:description" content="손님이 예약 전 어디서 보고, 어디서 망설이는지 — 우리 펜션이 어떻게 보이는지 함께 짚어보는 간단한 체크입니다." />
+  <meta property="og:image" content="https://yellowstopyangyang.netlify.app/og-yellowstop.png" />
+  <meta property="og:image:secure_url" content="https://yellowstopyangyang.netlify.app/og-yellowstop.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="양양 옐로우스탑 펜션 검색·예약채널 진단 체크리스트" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="양양 옐로우스탑 펜션 · 검색·예약채널 진단 체크리스트" />
+  <meta name="twitter:description" content="손님이 예약 전 어디서 보고, 어디서 망설이는지 — 우리 펜션이 어떻게 보이는지 함께 짚어보는 간단한 체크입니다." />
+  <meta name="twitter:image" content="https://yellowstopyangyang.netlify.app/og-yellowstop.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════ THEMES (밝고 안정감 있는 톤) ═══════ */
+    :root {
+      --bg: #F2ECE0;
+      --card: #FBF7EF;
+      --elevated: #FFFDF8;
+      --border: rgba(160,128,66,0.16);
+      --gold: #C2A268;
+      --gold-deep: #9A7B3D;
+      --gold-soft: rgba(194,162,104,0.10);
+      --gold-glow: rgba(194,162,104,0.07);
+      --text-primary: #322E27;
+      --text-secondary: #6E665A;
+      --text-muted: #9A9082;
+      --heading: #2A2620;
+      --warn: #BC6526;
+      --warn-soft: rgba(188,101,38,0.07);
+      --warn-border: rgba(188,101,38,0.34);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.72;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, var(--gold-glow) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 85% 100%, var(--gold-glow) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 36px 24px 120px;
+    }
+
+    /* ═══════ HERO ═══════ */
+    .hero {
+      position: relative;
+      padding: 0 0 46px;
+      margin-bottom: 30px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(120,90,30,0.05);
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      z-index: 3;
+    }
+
+    /* 히어로 비주얼 (실제 사진은 img/hero.jpg 로 교체 가능) */
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 800 / 300;
+      background: linear-gradient(180deg, #F4EAD6 0%, #FBF4E6 55%, var(--card) 100%);
+      overflow: hidden;
+    }
+    .hero-visual svg { display: block; width: 100%; height: 100%; }
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 38%;
+      background: linear-gradient(180deg, transparent, var(--card));
+      pointer-events: none;
+    }
+    .hero-body { padding: 38px 40px 0; position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 20px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 1.28;
+      letter-spacing: -0.01em;
+      color: var(--heading);
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    h1 .line-2 { font-size: 0.92em; }
+    h1 strong { font-weight: 600; color: var(--gold-deep); }
+
+    .sub {
+      color: var(--text-secondary);
+      font-size: 15.5px;
+      font-weight: 400;
+      line-height: 1.82;
+      max-width: 600px;
+    }
+
+    .guide {
+      margin-top: 30px;
+      padding: 18px 22px;
+      border-left: 3px solid var(--gold);
+      background: var(--gold-glow);
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.85;
+      border-radius: 0 4px 4px 0;
+    }
+    .guide strong { color: var(--gold-deep); font-weight: 600; }
+
+    /* ═══════ SECTIONS ═══════ */
+    .section {
+      margin-top: 22px;
+      padding: 40px 36px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(120,90,30,0.04);
+      animation: fadeUp 0.6s ease both;
+    }
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 36px; right: 36px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent 60%);
+      opacity: 0.45;
+      border-radius: 2px;
+    }
+
+    .section h2 {
+      font-family: 'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+      font-size: 27px;
+      font-weight: 600;
+      color: var(--heading);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .section p.desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    /* ═══════ QUESTIONS ═══════ */
+    .q {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+    .q:first-of-type { border-top: none; padding-top: 0; }
+
+    .label {
+      display: block;
+      font-weight: 700;
+      font-size: 14.5px;
+      letter-spacing: 0.01em;
+      color: var(--gold-deep);
+      margin-bottom: 16px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+    .option {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 13px 19px;
+      border: 1px solid var(--border);
+      background: var(--elevated);
+      font-size: 15px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-radius: 4px;
+      font-weight: 400;
+    }
+    .option:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+    .option:has(input:checked) {
+      background: var(--gold-soft);
+      border-color: var(--gold-deep);
+      box-shadow: 0 4px 16px var(--gold-glow);
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border: 1.5px solid var(--gold);
+      background: var(--elevated);
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+    input[type="radio"] { border-radius: 50%; }
+    input[type="checkbox"] { border-radius: 4px; }
+    input[type="radio"]:checked,
+    input[type="checkbox"]:checked {
+      border-color: var(--gold-deep);
+      background: var(--gold-deep);
+    }
+    input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--card);
+    }
+    input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 2.5px; left: 6px;
+      width: 4px; height: 8px;
+      border: solid var(--card);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .small {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* ═══════ INPUTS ═══════ */
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--elevated);
+      color: var(--text-primary);
+      padding: 16px 18px;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 4px;
+      line-height: 1.75;
+    }
+    textarea:focus,
+    input[type="text"]:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    textarea::placeholder,
+    input[type="text"]::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+
+    /* ═══════ RECOMMEND / NOTE ═══════ */
+    .recommend {
+      margin: 18px 0;
+      padding: 18px 22px;
+      border-left: 3px solid var(--gold);
+      background: var(--gold-glow);
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.8;
+      border-radius: 0 4px 4px 0;
+    }
+    .recommend strong { color: var(--gold-deep); font-weight: 600; }
+
+    /* ═══════ PANEL ═══════ */
+    .panel {
+      margin-top: 26px;
+      padding: 26px 28px;
+      background: var(--gold-soft);
+      border: 1px solid var(--border);
+      position: relative;
+      border-radius: 5px;
+    }
+    .panel::before {
+      content: 'WEPLACE NOTE';
+      position: absolute;
+      top: -10px; left: 24px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold-deep);
+      background: var(--card);
+      padding: 0 10px;
+    }
+    .panel h3 {
+      font-family: 'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 13px;
+      color: var(--gold-deep);
+    }
+    .panel p { color: var(--text-secondary); font-size: 14.5px; line-height: 1.8; }
+    .panel p strong { color: var(--gold-deep); font-weight: 600; }
+
+    /* ═══════ SUMMARY ═══════ */
+    .summary-box {
+      margin-top: 22px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      background: var(--elevated);
+      border-radius: 5px;
+    }
+    .summary-box textarea {
+      min-height: 340px;
+      background: var(--bg);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    /* ═══════ BUTTONS ═══════ */
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    button {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      padding: 15px 30px;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-radius: 4px;
+    }
+    .primary { background: var(--gold-deep); color: #FFFDF8; }
+    .primary:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--gold-glow);
+    }
+    .secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-deep);
+      background: var(--gold-soft);
+    }
+
+    .muted { color: var(--text-muted); font-size: 13px; margin-top: 15px; font-style: italic; line-height: 1.7; }
+
+    /* ═══════ SELF-CHECK (증상 진술문) ═══════ */
+    .selfcheck { border-color: var(--border); }
+    .selfcheck .desc { margin-bottom: 22px; }
+    .chk-list { display: flex; flex-direction: column; gap: 11px; }
+    .chk {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      background: var(--elevated);
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-primary);
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .chk:hover { border-color: var(--gold); background: var(--gold-soft); }
+    .chk .box {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      border: 1.5px solid var(--gold);
+      border-radius: 5px;
+      background: var(--card);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .chk.on {
+      border-color: var(--warn-border);
+      background: var(--warn-soft);
+    }
+    .chk.on .box {
+      border-color: var(--warn);
+      background: var(--warn);
+    }
+    .chk.on .box::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 7px;
+      width: 4px; height: 8px;
+      border: solid #FFFDF8;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .verdict {
+      margin-top: 22px;
+      padding: 18px 22px;
+      border-left: 3px solid var(--gold);
+      background: var(--gold-glow);
+      border-radius: 0 4px 4px 0;
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+    .verdict .count {
+      display: block;
+      font-size: 12.5px;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .verdict.v-gold { border-left-color: var(--gold); background: var(--gold-glow); }
+    .verdict.v-gold strong { color: var(--gold-deep); }
+    .verdict.v-neutral { border-left-color: var(--gold); background: var(--gold-soft); }
+    .verdict.v-warn { border-left-color: var(--warn); background: var(--warn-soft); }
+    .verdict.v-warn strong { color: var(--warn); font-weight: 600; }
+
+    /* ═══════ FOOTER ═══════ */
+    .footer-ornament {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-ornament span {
+      font-family: 'Cormorant Garamond', 'Noto Serif KR', Georgia, serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 760px) {
+      .wrap { padding: 28px 16px 80px; }
+      h1 { font-size: 30px; }
+      .hero { padding: 0 0 34px; }
+      .hero-body { padding: 30px 24px 0; }
+      .section { padding: 30px 22px; }
+      .section::before { left: 22px; right: 22px; }
+      .section h2 { font-size: 24px; }
+      .option { padding: 12px 16px; font-size: 14.5px; }
+      .chk { font-size: 14.5px; padding: 14px 16px; }
+      .panel::before { left: 18px; }
+      button { padding: 14px 22px; flex: 1 1 auto; }
+    }
+
+    /* ═══════ PRINT ═══════ */
+    @media print {
+      body { background: #fff; }
+      body::before { display: none; }
+      .btns { display: none; }
+      .hero, .section, .panel, .summary-box, .recommend {
+        background: #fff !important;
+        box-shadow: none;
+        border: 1px solid #d8cdb8;
+      }
+    }
+
+    /* ═══════ TOAST ═══════ */
+    .toast {
+      position: fixed;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--gold-deep);
+      color: #FFFDF8;
+      padding: 15px 30px;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      box-shadow: 0 12px 40px rgba(120,90,30,0.22);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease;
+      opacity: 0;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="hero-visual" aria-hidden="true">
+        <!-- 실제 펜션 사진으로 교체하시려면 이 div 안의 <svg>를 <img src="img/hero.jpg" alt="양양 옐로우스탑 펜션"> 로 바꾸시면 됩니다. -->
+        <svg viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F6EAD2"/>
+              <stop offset="1" stop-color="#FBF3E3"/>
+            </linearGradient>
+            <radialGradient id="sun" cx="0.72" cy="0.30" r="0.42">
+              <stop offset="0" stop-color="#F4DCA0" stop-opacity="0.9"/>
+              <stop offset="1" stop-color="#F4DCA0" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="800" height="300" fill="url(#sky)"/>
+          <circle cx="576" cy="90" r="150" fill="url(#sun)"/>
+          <circle cx="576" cy="92" r="34" fill="#E8C97E" opacity="0.55"/>
+          <path d="M0 214 C150 188 250 206 400 196 C560 185 660 208 800 192 L800 300 L0 300 Z" fill="#D9BE8A" opacity="0.55"/>
+          <path d="M0 236 C170 214 300 232 460 224 C620 216 700 234 800 224 L800 300 L0 300 Z" fill="#C7A86E" opacity="0.6"/>
+          <path d="M0 262 C200 246 340 262 520 256 C660 251 730 264 800 258 L800 300 L0 300 Z" fill="#A9874E" opacity="0.5"/>
+          <g fill="#9A7B3D" opacity="0.5">
+            <ellipse cx="150" cy="266" rx="9" ry="11"/>
+            <circle cx="138" cy="252" r="3.4"/>
+            <circle cx="150" cy="248" r="3.4"/>
+            <circle cx="162" cy="252" r="3.4"/>
+            <circle cx="129" cy="259" r="3"/>
+            <circle cx="171" cy="259" r="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-body">
+        <span class="eyebrow">WEPLACE · 예약 전 신뢰 정비</span>
+        <h1>양양 옐로우스탑 펜션<br><strong>검색·예약채널</strong><br><span class="line-2">진단 체크리스트</span></h1>
+        <p class="sub">
+          대표님은 이미 여러 채널에서 옐로우스탑을 알려오셨습니다.
+          이 체크는 그동안 쌓아오신 것을 한자리에 모아, 손님이 예약 전 어디서 보든
+          같은 펜션으로 보이도록 정리하기 위한 자리입니다.
+          체크하시는 것 자체가, 펜션을 한 번 더 살피는 일입니다.
+        </p>
+        <div class="guide">
+          편하게 아는 만큼만 체크해 주시면 됩니다. 모르는 칸은 비워두셔도 괜찮습니다.<br>
+          체크 → 하단 <strong>"요약문 생성"</strong> 클릭 → <strong>"복사하기"</strong> → 카카오톡으로 전달
+        </div>
+      </div>
+    </section>
+
+    <!-- 시작 전 자가체크 -->
+    <section class="section selfcheck" data-emotion="bad">
+      <h2>시작 전, 손으로 짚어보기</h2>
+      <p class="desc">아래는 펜션을 운영하다 보면 한 번쯤 마주치는 장면들입니다. 지금 우리 펜션에 해당하는 것만 가볍게 눌러보세요. 맞고 틀리고가 아니라, 어디가 비어 있는지 손으로 짚어보는 것입니다.</p>
+      <div class="chk-list" id="chkList">
+        <div class="chk" data-chk="손님이 예약 전에 사진·주차 같은 걸 자주 묻는다"><span class="box"></span><span>손님이 예약 전에 "사진이랑 같아요?", "주차 돼요?" 같은 걸 자주 묻는다</span></div>
+        <div class="chk" data-chk="네이버엔 정보가 있는데 구글 지도엔 없거나 오래된 정보다"><span class="box"></span><span>네이버엔 정보가 있는데, 구글 지도엔 없거나 오래된 정보다</span></div>
+        <div class="chk" data-chk="성수기엔 문의가 오는데 비수기·평일엔 뚝 끊긴다"><span class="box"></span><span>성수기엔 문의가 오는데, 비수기·평일엔 뚝 끊긴다</span></div>
+        <div class="chk" data-chk="블로그·예약·후기가 각각 따로 관리되고 있다"><span class="box"></span><span>블로그·예약·후기가 각각 따로 관리되고 있다</span></div>
+        <div class="chk" data-chk="AI 검색에서 우리 펜션이 어떻게 소개되는지 본 적이 없다"><span class="box"></span><span>AI 검색에서 우리 펜션이 어떻게 소개되는지 본 적이 없다</span></div>
+      </div>
+      <div class="verdict v-gold" id="verdict">
+        <span class="count" id="verdictCount">짚은 항목 0 / 5</span>
+        <span id="verdictText">체크하실수록, 지금 어디가 비었는지 <strong>또렷해집니다.</strong></span>
+      </div>
+    </section>
+
+    <form id="checkForm">
+
+      <!-- 1. 공식 펜션명 기준 -->
+      <section class="section">
+        <h2>1. 공식 펜션명 기준</h2>
+        <p class="desc">손님이 어느 화면에서 보든 같은 이름으로 인식하도록, 먼저 기준이 되는 이름을 정합니다.</p>
+        <div class="q">
+          <span class="label">손님에게 알리고 싶은 정식 이름</span>
+          <div class="options">
+            <label class="option"><input type="radio" name="nameMain" value="양양 옐로우스탑 펜션" /> 양양 옐로우스탑 펜션</label>
+            <label class="option"><input type="radio" name="nameMain" value="양양 애견동반 옐로우스탑 펜션" /> 양양 애견동반 옐로우스탑 펜션</label>
+            <label class="option"><input type="radio" name="nameMain" value="양양애견동반옐로우스탑펜션" /> 양양애견동반옐로우스탑펜션</label>
+            <label class="option"><input type="radio" name="nameMain" value="빈티지하우스 명칭도 함께 유지" /> 빈티지하우스 명칭도 함께 유지</label>
+            <label class="option"><input type="radio" name="nameMain" value="아직 고민 중" /> 아직 고민 중</label>
+          </div>
+          <div class="small">하나로 정해두면 네이버·구글·예약채널 어디서나 같은 펜션으로 보이도록 맞춰드릴 수 있습니다.</div>
+        </div>
+      </section>
+
+      <!-- 2. 현재 등록된 채널 -->
+      <section class="section">
+        <h2>2. 현재 등록된 채널</h2>
+        <p class="desc">여러 곳에 펜션을 올려두신 것 자체가 이미 적지 않은 노력입니다. 지금은 손님이 펜션을 만나는 입구가 어디인지 함께 그려보는 단계입니다. 정확하지 않아도 기억나는 대로 체크해 주세요.</p>
+        <div class="q">
+          <span class="label">현재 등록·노출되고 있다고 알고 있는 곳 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="channel" value="네이버플레이스" /> 네이버플레이스</label>
+            <label class="option"><input type="checkbox" name="channel" value="네이버예약" /> 네이버예약</label>
+            <label class="option"><input type="checkbox" name="channel" value="야놀자" /> 야놀자</label>
+            <label class="option"><input type="checkbox" name="channel" value="여기어때" /> 여기어때</label>
+            <label class="option"><input type="checkbox" name="channel" value="에어비앤비" /> 에어비앤비</label>
+            <label class="option"><input type="checkbox" name="channel" value="당근 동네업체" /> 당근 동네업체</label>
+            <label class="option"><input type="checkbox" name="channel" value="인스타그램" /> 인스타그램</label>
+            <label class="option"><input type="checkbox" name="channel" value="블로그" /> 블로그</label>
+            <label class="option"><input type="checkbox" name="channel" value="기존 홈페이지" /> 기존 홈페이지</label>
+            <label class="option"><input type="checkbox" name="channel" value="구글지도" /> 구글지도</label>
+            <label class="option"><input type="checkbox" name="channel" value="기타" /> 기타</label>
+          </div>
+          <div class="small">누가 만들었는지 기억나지 않는 곳이 있어도 괜찮습니다. 잘못된 게 아니라, 운영하다 보면 자연스럽게 생기는 흔적입니다. 함께 차분히 모아드립니다.</div>
+        </div>
+
+        <div class="q">
+          <span class="label">기존 홈페이지에 대해 평소 느낌</span>
+          <div class="options">
+            <label class="option"><input type="radio" name="homeFeel" value="잘 운영되고 있고 손님 반응도 좋다" /> 잘 운영되고 있고 반응도 좋다</label>
+            <label class="option"><input type="radio" name="homeFeel" value="있긴 한데 구글·AI 검색에서 잘 읽히는지 모르겠다" /> 있긴 한데 구글·AI에서 잘 읽히는지 모르겠다</label>
+            <label class="option"><input type="radio" name="homeFeel" value="손볼 때가 된 것 같다" /> 손볼 때가 된 것 같다</label>
+          </div>
+          <div class="small">홈페이지는 손님이 안심하고 한 번 더 확인하는 곳입니다. 만들어둔 방식에 따라 구글·AI가 그 내용을 잘 읽어가기도, 그냥 지나치기도 합니다. 이 부분은 Weplace가 직접 열어보고 알려드립니다.</div>
+        </div>
+      </section>
+
+      <!-- 3. 최근 예약이 가장 많이 들어오는 경로 -->
+      <section class="section">
+        <h2>3. 최근 예약이 가장 많이 들어오는 경로</h2>
+        <p class="desc">실제 예약이 들어오는 길을 알면, 손님이 길을 잃지 않도록 정리할 수 있습니다.</p>
+        <div class="q">
+          <span class="label">최근 예약이 가장 많은 곳</span>
+          <div class="options">
+            <label class="option"><input type="radio" name="bookRoute" value="네이버예약" /> 네이버예약</label>
+            <label class="option"><input type="radio" name="bookRoute" value="전화문의" /> 전화문의</label>
+            <label class="option"><input type="radio" name="bookRoute" value="야놀자" /> 야놀자</label>
+            <label class="option"><input type="radio" name="bookRoute" value="여기어때" /> 여기어때</label>
+            <label class="option"><input type="radio" name="bookRoute" value="에어비앤비" /> 에어비앤비</label>
+            <label class="option"><input type="radio" name="bookRoute" value="인스타그램" /> 인스타그램</label>
+            <label class="option"><input type="radio" name="bookRoute" value="지인소개" /> 지인소개</label>
+            <label class="option"><input type="radio" name="bookRoute" value="잘 모르겠음" /> 잘 모르겠음</label>
+          </div>
+        </div>
+        <div class="q">
+          <label class="label">손님이 전화로 연락하는 대표 번호</label>
+          <input type="text" id="phone" placeholder="예: 010-0000-0000  (지금 손님에게 가장 많이 노출되는 번호로 적어주세요)" />
+          <div class="small">채널마다 번호가 다르게 남아있는 경우가 종종 있습니다. 기준 번호 하나만 정해주시면 전체를 같은 번호로 맞춰드립니다.</div>
+        </div>
+      </section>
+
+      <!-- 4. 앞으로 더 받고 싶은 고객 -->
+      <section class="section">
+        <h2>4. 앞으로 더 받고 싶은 고객</h2>
+        <p class="desc">받고 싶은 손님이 분명할수록, 그 손님이 예약 전에 확인하고 싶어 하는 정보를 먼저 정리할 수 있습니다.</p>
+        <div class="q">
+          <span class="label">앞으로 더 늘리고 싶은 고객 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="targetGuest" value="강아지와 함께 오는 가족" /> 강아지와 함께 오는 가족</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="커플 여행객" /> 커플 여행객</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="아이 동반 가족" /> 아이 동반 가족</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="조용히 쉬러 오는 비반려 고객" /> 조용히 쉬러 오는 비반려 고객</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="양양·속초 여행 중 하루 머무는 고객" /> 양양·속초 여행 중 하루 머무는 고객</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="기념일/생일 여행 고객" /> 기념일/생일 여행 고객</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="장기 숙박 고객" /> 장기 숙박 고객</label>
+            <label class="option"><input type="checkbox" name="targetGuest" value="단체 고객" /> 단체 고객</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 반려견 동반 기준 -->
+      <section class="section">
+        <h2>5. 반려견 동반 기준</h2>
+        <p class="desc">반려견 손님이 예약 전에 가장 먼저 확인하는 부분입니다. 명확할수록 문의가 줄고 예약 확신이 올라갑니다.</p>
+        <div class="q">
+          <span class="label">반려견 동반 기준 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="petStd" value="소형견 가능" /> 소형견 가능</label>
+            <label class="option"><input type="checkbox" name="petStd" value="중형견 가능" /> 중형견 가능</label>
+            <label class="option"><input type="checkbox" name="petStd" value="대형견 가능" /> 대형견 가능</label>
+            <label class="option"><input type="checkbox" name="petStd" value="다견 가능" /> 다견 가능</label>
+            <label class="option"><input type="checkbox" name="petStd" value="반려견 추가 비용 있음" /> 반려견 추가 비용 있음</label>
+            <label class="option"><input type="checkbox" name="petStd" value="견종 제한 있음" /> 견종 제한 있음</label>
+            <label class="option"><input type="checkbox" name="petStd" value="객실별 기준이 다름" /> 객실별 기준이 다름</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 예약 전 자주 받는 질문 -->
+      <section class="section">
+        <h2>6. 예약 전 자주 받는 질문</h2>
+        <p class="desc">손님이 예약 전에 반복해서 묻는 질문은, 곧 화면에 미리 적어두면 좋은 정보입니다.</p>
+        <div class="q">
+          <span class="label">자주 받는 질문 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="faq" value="강아지 몇 마리까지 가능한가요?" /> 강아지 몇 마리까지 가능한가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="대형견도 가능한가요?" /> 대형견도 가능한가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="반려견 없이도 예약 가능한가요?" /> 반려견 없이도 예약 가능한가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="바다는 가까운가요?" /> 바다는 가까운가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="바비큐 가능한가요?" /> 바비큐 가능한가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="주변에 식당/편의점 있나요?" /> 주변에 식당/편의점 있나요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="주차 가능한가요?" /> 주차 가능한가요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="객실 냄새나 청결은 괜찮나요?" /> 객실 냄새나 청결은 괜찮나요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="아이와 함께 가도 괜찮나요?" /> 아이와 함께 가도 괜찮나요?</label>
+            <label class="option"><input type="checkbox" name="faq" value="체크인/체크아웃 시간이 궁금해요" /> 체크인/체크아웃 시간이 궁금해요</label>
+          </div>
+        </div>
+        <div class="q">
+          <label class="label">그 외 자주 듣는 질문이 있다면</label>
+          <textarea id="faqEtc" placeholder="예: 늦은 체크인 가능한가요? / 마당이 막혀 있나요? / 근처 식당 추천 등 — 손님이 자주 묻는 말 그대로 적어주셔도 좋습니다."></textarea>
+        </div>
+      </section>
+
+      <!-- 7. 현재 가장 아쉬운 부분 -->
+      <section class="section">
+        <h2>7. 현재 가장 아쉬운 부분</h2>
+        <p class="desc">아쉬운 부분이 떠오르신다는 것은, 이미 펜션을 더 살리려고 신경 쓰고 계신다는 뜻입니다. 잘못된 점을 찾는 칸이 아니라, 지금도 충분히 매력적인 펜션이 손님 화면에서 조금 더 또렷하게 보이도록 먼저 손보면 좋은 부분을 함께 짚어보는 칸입니다.</p>
+        <div class="recommend">
+          대표님이 직접 느끼시는 부분만 편하게 골라주세요. 느끼지 못한 부분은 <strong>Weplace가 옆에서 같이 확인</strong>해 드립니다.
+        </div>
+        <div class="q">
+          <span class="label">평소 살짝 아쉽다고 느끼던 부분 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="improve" value="평일 예약이 약하다" /> 평일 예약이 약하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="비수기 예약이 약하다" /> 비수기 예약이 약하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="리뷰가 부족하다" /> 리뷰가 부족하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="사진이 아쉽다" /> 사진이 아쉽다</label>
+            <label class="option"><input type="checkbox" name="improve" value="구글 노출이 약하다" /> 구글 노출이 약하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="채널마다 정보가 다르다" /> 채널마다 정보가 다르다</label>
+            <label class="option"><input type="checkbox" name="improve" value="애견펜션 이미지가 너무 강하다" /> 애견펜션 이미지가 너무 강하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="문의는 오는데 예약 전환이 약하다" /> 문의는 오는데 예약 전환이 약하다</label>
+            <label class="option"><input type="checkbox" name="improve" value="무엇이 문제인지 잘 모르겠다" /> 무엇이 문제인지 잘 모르겠다</label>
+          </div>
+        </div>
+        <div class="q">
+          <label class="label">한 가지만 먼저 정리할 수 있다면, 무엇이었으면 하세요?</label>
+          <textarea id="firstFix" placeholder="예: 이름부터 하나로 통일했으면 / 구글에 제대로 나왔으면 / 평일을 살렸으면 등 — 편하게 적어주세요."></textarea>
+        </div>
+      </section>
+
+      <!-- 8. 가장 자신 있는 공간 -->
+      <section class="section">
+        <h2>8. 가장 자신 있는 공간</h2>
+        <p class="desc">손님 화면 첫 줄에 무엇을 보여줄지 정하는 칸입니다. 대표님이 가장 자신 있는 매력을 먼저 알려주세요.</p>
+        <div class="q">
+          <span class="label">가장 자신 있는 공간 (복수 선택)</span>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="bestSpace" value="넓은 잔디마당" /> 넓은 잔디마당</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="객실" /> 객실</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="바비큐 공간" /> 바비큐 공간</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="미니카페/휴식공간" /> 미니카페/휴식공간</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="수산항 산책 동선" /> 수산항 산책 동선</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="동호해변 접근성" /> 동호해변 접근성</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="야경" /> 야경</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="조용한 분위기" /> 조용한 분위기</label>
+            <label class="option"><input type="checkbox" name="bestSpace" value="반려견 자유공간" /> 반려견 자유공간</label>
+          </div>
+        </div>
+        <div class="q">
+          <label class="label">손님에게 꼭 보여주고 싶은 한 장면</label>
+          <textarea id="bestScene" placeholder="예: 노을 질 때 잔디마당 / 강아지가 자유롭게 뛰는 모습 / 야경 등 — 한 장면을 떠올려 적어주세요."></textarea>
+        </div>
+      </section>
+
+      <!-- 9. 추가 메모 -->
+      <section class="section">
+        <h2>9. 추가 메모</h2>
+        <p class="desc">위에서 다 담지 못한 이야기나, Weplace가 미리 알아두면 좋을 내용을 자유롭게 남겨주세요.</p>
+        <div class="q">
+          <label class="label">자유 메모</label>
+          <textarea id="memo" placeholder="예: 정식 펜션명 직접 입력 / 새 전화번호 / 곧 바뀔 운영 계획 / 예전 사업자명 정리 필요 / 특별히 신경 쓰는 부분 등"></textarea>
+        </div>
+      </section>
+
+      <!-- 10. 요약문 -->
+      <section class="section">
+        <h2>10. Weplace에 보낼 요약문</h2>
+        <p class="desc">아래 버튼을 누르면 체크하신 내용이 카카오톡으로 바로 보낼 수 있는 문장으로 정리됩니다.</p>
+        <div class="panel">
+          <h3>이 체크가 향하는 곳</h3>
+          <p>
+            네이버를 버리자는 이야기가 아닙니다. 발견의 시작은 여전히 네이버가 맞습니다.
+            <strong>네이버에서 발견되고</strong>, 홈페이지에서 안심하고,
+            <strong>구글과 AI에서 다시 확인되는</strong> 곳으로 — 그 다음 화면까지 자연스럽게 이어드리는 일입니다.
+            대표님이 이미 쌓아오신 것을 한 방향으로 모아, 손님이 예약 전 확신을 갖도록 돕는 정리입니다.
+          </p>
+        </div>
+        <div class="summary-box">
+          <textarea id="summaryOutput" placeholder="여기에 자동 생성된 요약문이 표시됩니다." readonly></textarea>
+          <div class="btns">
+            <button type="button" class="primary" onclick="generateSummary()">요약문 생성</button>
+            <button type="button" class="secondary" onclick="copySummary()">복사하기</button>
+            <button type="reset" class="secondary" onclick="setTimeout(clearSummary, 50)">입력 초기화</button>
+          </div>
+          <div class="muted">이 박스의 문장을 그대로 복사해서 Weplace 담당자에게 카카오톡으로 보내주시면 됩니다.</div>
+        </div>
+      </section>
+    </form>
+
+    <div class="footer-ornament">
+      <span>— 손님이 어디서 보든, 같은 옐로우스탑으로 —</span>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ── 자가체크: 증상 토글 + 깨달음 배너 ── */
+    function selfcheckCount() {
+      return document.querySelectorAll('.chk.on').length;
+    }
+    function selfcheckList() {
+      return Array.from(document.querySelectorAll('.chk.on')).map(el => el.dataset.chk);
+    }
+    function updateVerdict() {
+      const n = selfcheckCount();
+      const box = document.getElementById('verdict');
+      const cnt = document.getElementById('verdictCount');
+      const txt = document.getElementById('verdictText');
+      if (!box) return;
+      cnt.textContent = `짚은 항목 ${n} / 5`;
+      box.classList.remove('v-gold', 'v-neutral', 'v-warn');
+      if (n === 0) {
+        box.classList.add('v-gold');
+        txt.innerHTML = '체크하실수록, 지금 어디가 비었는지 <strong>또렷해집니다.</strong>';
+      } else if (n <= 2) {
+        box.classList.add('v-neutral');
+        txt.innerHTML = '대부분의 대표님이 여기 해당됩니다. 비어 있는 건 광고가 아니라 \u2018손님이 확인하는 화면\u2019입니다.';
+      } else {
+        box.classList.add('v-warn');
+        txt.innerHTML = '지금 손님은 발견은 하는데, 확인에서 <strong>조용히 넘어가고 있을</strong> 가능성이 높습니다.';
+      }
+    }
+    document.querySelectorAll('.chk').forEach(function (el) {
+      el.addEventListener('click', function () {
+        el.classList.toggle('on');
+        updateVerdict();
+      });
+    });
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    }
+    function getRadioValue(name) {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : "미선택";
+    }
+    function getCheckedValues(name) {
+      const els = document.querySelectorAll(`input[name="${name}"]:checked`);
+      if (!els.length) return "해당 없음";
+      return Array.from(els).map(el => el.value).join(", ");
+    }
+    function getText(id) {
+      const el = document.getElementById(id);
+      return (el && el.value.trim()) ? el.value.trim() : "없음";
+    }
+
+    function generateSummary() {
+      const scN = selfcheckCount();
+      const scList = selfcheckList();
+      const selfcheck = scList.length ? scList.map(s => "  · " + s).join("\n") : "  · 짚은 항목 없음";
+
+      const nameMain = getRadioValue("nameMain");
+      const channel = getCheckedValues("channel");
+      const homeFeel = getRadioValue("homeFeel");
+      const bookRoute = getRadioValue("bookRoute");
+      const phone = getText("phone");
+      const targetGuest = getCheckedValues("targetGuest");
+      const petStd = getCheckedValues("petStd");
+      const faq = getCheckedValues("faq");
+      const faqEtc = getText("faqEtc");
+      const improve = getCheckedValues("improve");
+      const firstFix = getText("firstFix");
+      const bestSpace = getCheckedValues("bestSpace");
+      const bestScene = getText("bestScene");
+      const memo = getText("memo");
+
+      const summary =
+`[양양 옐로우스탑 펜션 · 검색·예약채널 진단 체크]
+
+[시작 전 자가체크] 짚은 항목 ${scN} / 5
+${selfcheck}
+
+1. 공식 펜션명 기준
+- ${nameMain}
+
+2. 현재 등록된 채널
+- ${channel}
+- 기존 홈페이지 느낌: ${homeFeel}
+
+3. 최근 예약이 가장 많이 들어오는 경로
+- 가장 많은 경로: ${bookRoute}
+- 대표 전화번호: ${phone}
+
+4. 앞으로 더 받고 싶은 고객
+- ${targetGuest}
+
+5. 반려견 동반 기준
+- ${petStd}
+
+6. 예약 전 자주 받는 질문
+- 자주 받는 질문: ${faq}
+- 그 외 질문: ${faqEtc}
+
+7. 현재 가장 아쉬운 부분
+- 아쉽게 느끼던 부분: ${improve}
+- 먼저 정리하고 싶은 것: ${firstFix}
+
+8. 가장 자신 있는 공간
+- 자신 있는 공간: ${bestSpace}
+- 꼭 보여주고 싶은 장면: ${bestScene}
+
+9. 추가 메모
+- ${memo}
+
+위 내용을 기준으로 네이버·구글·예약채널·AI 검색에서 옐로우스탑이 어떻게 보이는지 예비진단을 부탁드립니다.`;
+
+      document.getElementById("summaryOutput").value = summary;
+      showToast("요약문이 생성되었습니다");
+      document.getElementById("summaryOutput").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    async function copySummary() {
+      const output = document.getElementById("summaryOutput");
+      if (!output.value.trim()) { showToast("먼저 요약문을 생성해주세요"); return; }
+      try {
+        await navigator.clipboard.writeText(output.value);
+        showToast("요약문이 복사되었습니다");
+      } catch (e) {
+        output.removeAttribute("readonly");
+        output.select();
+        document.execCommand("copy");
+        output.setAttribute("readonly", "readonly");
+        showToast("요약문이 복사되었습니다");
+      }
+    }
+    function clearSummary() {
+      document.getElementById("summaryOutput").value = "";
+      document.querySelectorAll('.chk.on').forEach(function (el) { el.classList.remove('on'); });
+      updateVerdict();
+      showToast("입력이 초기화되었습니다");
+    }
+  </script>
+</body>
+</html>
